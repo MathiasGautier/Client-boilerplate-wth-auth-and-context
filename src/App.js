@@ -15,10 +15,10 @@ function App() {
     <div className="container mt-4">
     <Router>
     <Navbar />
+      <Route exact path="/" component={Home} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/register" component={Register} />
-      <Route exact path="/" component={Home} />
-      <Route exact path="/new-task" component={NewTask} />
+      <PrivateRoute exact path="/new-task" component={NewTask} />
     </Router>
     </div>
   );

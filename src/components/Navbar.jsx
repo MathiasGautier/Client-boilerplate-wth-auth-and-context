@@ -63,7 +63,7 @@ function Navbar(props) {
             >
               New Task
             </NavLink>
-            <a className="flex-sm-fill text-sm-center nav-link disabled">
+            <a className="flex-sm-fill text-sm-center nav-link disabled" href=" ">
               Connected as {authContext.user.username}
             </a>
             <NavLink
