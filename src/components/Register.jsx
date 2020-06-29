@@ -14,6 +14,26 @@ function Register(props) {
         clearTimeout(timerID);
     }
   },[]);
+
+  useEffect(()=>{
+    if(authContext.isAuthenticated){
+      props.history.push("/");
+    }
+  });
+
+const login=()=>{
+  apiHandler
+  .login(user)
+  .then((data) => {
+    const { isAuthenticated, user } = data;
+    console.log(data);
+    authContext.setUser(user);
+    authContext.setIsAuthenticated(isAuthenticated);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+};
   
 
   const onChange = (e) => {
@@ -30,10 +50,8 @@ function Register(props) {
     apiHandler.register(user)
     .then((data) => {
      console.log(data)
-     const { isAuthenticated, user } = data;
-     authContext.setUser(user);
-     authContext.setIsAuthenticated(isAuthenticated);
      resetForm();
+     login();
      setMessage("yes");
      timerID = setTimeout(() => {
        props.history.push("/");

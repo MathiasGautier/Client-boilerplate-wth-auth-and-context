@@ -15,6 +15,12 @@ function Login(props) {
     };
   }, []);
 
+  useEffect(()=>{
+    if(authContext.isAuthenticated){
+      props.history.push("/");
+    }
+  });
+
   const onChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
@@ -48,6 +54,9 @@ function Login(props) {
         console.log(error);
       });
   };
+
+
+
 
   return (
     <div>

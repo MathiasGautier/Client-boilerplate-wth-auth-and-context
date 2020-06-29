@@ -4,7 +4,7 @@ import { AuthContext } from "../Auth/AuthContext";
 
 const PrivateRoute = ({ component: Component, roles, ...rest }) => {
   const { isAuthenticated, user } = useContext(AuthContext);
-
+console.log(user)
   return (
     <Route
       {...rest}
@@ -15,10 +15,10 @@ const PrivateRoute = ({ component: Component, roles, ...rest }) => {
               to={{ pathname: "/login", state: { from: props.location } }}
             />
           );
-        // if (!roles.includes(user.role))
-        //   return (
-        //     <Redirect to={{ pathname: "/", state: { from: props.location } }} />
-        //   );
+        if (!roles.includes(user.role))
+          return (
+            <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+          );
         return <Component {...props} />;
       }}
     />
