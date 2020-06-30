@@ -35,13 +35,12 @@ function Login(props) {
     apiHandler
       .login(user)
       .then((data) => {
-        const { isAuthenticated, user } = data;
-        console.log(data);
-        authContext.setUser(user);
-        authContext.setIsAuthenticated(isAuthenticated);
-        resetForm();
         setMessage("yes");
+        const { isAuthenticated, user } = data;
+        resetForm();
         timerID = setTimeout(() => {
+          authContext.setUser(user);
+          authContext.setIsAuthenticated(isAuthenticated);
           props.history.push("/");
         }, 2000);
       })
@@ -90,12 +89,12 @@ function Login(props) {
             Log in
           </button>
         </form>
-        {message === "yes" ? (
+        {message==="yes" ? (
           <div className="alert alert-success text-center" role="alert">
             Welcome {authContext.user.username} !
           </div>
         ) : null}
-        {message === "no" ? (
+        {message==="no" ? (
           <div className="alert alert-danger text-center" role="alert">
             Wrong username or password. Please try again or register a account.
           </div>

@@ -51,9 +51,9 @@ const login=()=>{
     .then((data) => {
      console.log(data)
      resetForm();
-     login();
      setMessage("yes");
      timerID = setTimeout(() => {
+       login();
        props.history.push("/");
      }, 2000);
     })
@@ -110,12 +110,12 @@ const login=()=>{
       </form>
       {message === "yes" ? (
           <div className="alert alert-success text-center" role="alert">
-            Account successfully created. You can now login.
+            Account successfully created !
           </div>
         ) : null}
         {message === "no" ? (
           <div className="alert alert-danger text-center" role="alert">
-            We couldn't create your account, please verify your informations.
+            We couldn't create your account... please verify your informations.
           </div>
         ) : null}
     </div>
