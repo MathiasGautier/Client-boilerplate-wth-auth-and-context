@@ -9,13 +9,18 @@ export default ({ children }) => {
   const [isloaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    apiHandler.isAuthenticated().then((data) => {
+    apiHandler.isAuthenticated()
+    .then((data) => {
       setUser(data.user);
       setIsAuthenticated(data.isAuthenticated);
       setIsLoaded(true);
-    });
+    })
+    .catch((error)=>{
+      setUser(null);
+      setIsAuthenticated(false)
+      setIsLoaded(true);
+    })
   }, []);
-
   return (
     <div>
     {!isloaded ? (
